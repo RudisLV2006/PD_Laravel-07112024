@@ -6,10 +6,15 @@
             <li>
                 <h2>Title: {{ $post->title }}</h2>
                 <p>Content: {{ $post->content }}</p>
+                <p>{{ $post->published_at }}</p>
                 <div>
                     <a href="/posts/{{ $post->id }}">Show</a>
                     <a href="/posts/{{ $post->id }}/edit">Edit</a>
-                    <a href="/posts/{{ $post->id }}/destroy">Delete</a>
+                    <form action="/posts/{{ $post->id }}/destroy" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>Delete</button>
+                    </form>
                 </div>
             </li>
         @endforeach
